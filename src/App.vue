@@ -2,7 +2,20 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 </script>
-
+<script>
+export default {
+  data() {
+    return {
+      message: 'hello man'
+    }
+  },
+  async mounted() {
+    const res = await fetch('http://localhost:3000/')
+    const {message} = await res.json();
+    this.message = message;
+  }
+}
+</script>
 <template>
   <header>
     <img
@@ -12,6 +25,7 @@ import HelloWorld from "./components/HelloWorld.vue";
       width="125"
       height="125"
     />
+    {{message}}
 
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
