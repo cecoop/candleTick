@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
+const ticks = require('./src/controllers/tick.controller');
 
 var app = express();
 
@@ -16,6 +17,8 @@ app.use(cookieParser());
 app.get('/', function (req, res) {
     res.send({message: 'whats up'});
 });
+
+app.use('/ticks', ticks)
 
 var port = process.env.PORT || '3000';
 app.listen(port, () => {
